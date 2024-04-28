@@ -1,0 +1,227 @@
+"エンコーディング
+set encoding=utf-8
+scriptencoding utf-8
+
+" vim-plug
+call plug#begin('~/.vim/plugged')
+
+Plug 'itchyny/lightline.vim'
+Plug 'mattn/sonictemplate-vim'
+Plug 'kana/vim-tabpagecd'
+Plug 'junegunn/fzf' , { 'dir': '~/.fzf', 'do': './install --all --no-update-rc' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-commentary'
+Plug 'easymotion/vim-easymotion'
+Plug 'prabirshrestha/vim-lsp'
+Plug 'mattn/vim-lsp-settings'
+Plug 'prabirshrestha/asyncomplete.vim'
+Plug 'prabirshrestha/asyncomplete-lsp.vim'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'Krasjet/auto.pairs'
+Plug 'rhysd/clever-f.vim'
+Plug 'kana/vim-operator-user'
+Plug 'kana/vim-operator-replace'
+Plug 'tpope/vim-fugitive'
+Plug 'cocopon/iceberg.vim'
+Plug 'preservim/nerdtree'
+Plug 'dart-lang/dart-vim-plugin'
+Plug 'liuchengxu/vim-which-key'
+Plug 'thinca/vim-localrc'
+Plug 'mattn/emmet-vim'
+Plug 'jparise/vim-graphql'
+Plug 'tpope/vim-rails'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'lambdalisue/nerdfont.vim'
+Plug 'lambdalisue/fern.vim'
+Plug 'lambdalisue/fern-renderer-nerdfont.vim'
+Plug 'preservim/vim-markdown'
+if has('python3')
+    Plug 'SirVer/ultisnips'
+    Plug 'honza/vim-snippets'
+    Plug 'prabirshrestha/asyncomplete-ultisnips.vim'
+endif
+
+call plug#end()
+
+let g:fern#renderer = "nerdfont"
+
+if has('python3')
+    let g:UltiSnipsExpandTrigger="<c-e>"
+    " call asyncomplete#register_source(asyncomplete#sources#ultisnips#get_source_options({
+    "     \ 'name': 'ultisnips',
+    "     \ 'allowlist': ['*'],
+    "     \ 'completor': function('asyncomplete#sources#ultisnips#completor'),
+    "     \ }))
+    augroup ultisnip-dart
+        autocmd!
+        autocmd BufRead,BufNewFile,BufEnter *.dart UltiSnipsAddFiletypes dart-flutter
+    augroup END
+endif
+
+" call asyncomplete#register_source(asyncomplete#sources#emmet#get_source_options({
+"     \ 'name': 'emmet',
+"     \ 'whitelist': ['html'],
+"     \ 'completor': function('asyncomplete#sources#emmet#completor'),
+"     \ }))
+
+let g:lsp_diagnostics_echo_cursor = 1
+let g:vim_markdown_folding_disabled = 1
+set signcolumn=yes
+" noremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
+" inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+" inoremap <expr> <cr>    pumvisible() ? asyncomplete#close_popup() : "\<cr>"
+" inoremap <expr> <cr> pumvisible() ? asyncomplete#close_popup() . "\<cr>" : "\<cr>"
+
+"基本設定
+set number
+set title
+syntax on
+set re=0
+set expandtab
+set smarttab
+set tabstop=4
+set shiftwidth=4
+" set smartindent
+set ignorecase
+set smartcase
+set wrapscan
+set laststatus=2
+set showmode
+set showcmd
+set ruler
+set hidden
+set wildmenu
+set wildmode=list:longest,full
+set backspace=indent,eol,start
+nnoremap j gj
+nnoremap k gk
+nnoremap gj j
+nnoremap gk k
+nnoremap <C-j> :bnext<cr>
+nnoremap <C-k> :bprev<cr>
+inoremap <silent>jj <ESC>
+inoremap <C-b> <Left>
+inoremap <C-f> <Right>
+cnoremap <C-b> <Left>
+cnoremap <C-f> <Right>
+cnoremap <C-a> <HOME>
+cnoremap <C-e> <END>
+cnoremap <C-h> <BS>
+cnoremap <C-d> <Del>
+
+let mapleader="\<Space>"
+nnoremap <silent><F12> :LspDefinition<cr>
+nnoremap <silent><F2> :LspRename<cr>
+nnoremap <silent><leader> :WhichKey '<Space>'<cr>
+" nnoremap <silent><Leader>h :LspHover<cr>
+" nnoremap <silent><Leader>a :LspCodeAction<cr>
+" nnoremap <silent><Leader>d :LspDocumentDiagnostics<cr>
+" nnoremap <silent><Leader>r :LspReferences<cr>
+
+let g:which_key_map = {
+    \ 'h': [':LspHover', 'hover-information'],
+    \ 'a': [':LspCodeAction', 'code-action'],
+    \ 'd': [':LspDocumentDiagnostics', 'diagnostics'],
+    \ 'r': [':LspReferences', 'references']
+    \ }
+call which_key#register('<Space>', "g:which_key_map")
+
+
+let g:lsp_settings = {
+    \ 'analysis-server-dart-snapshot': {
+    \     'cmd': [
+    \         '/Users/teruya/.asdf/shims/dart',
+    \         '/Users/teruya/.asdf/installs/flutter/3.7.3-stable/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot',
+    \         '--lsp'
+    \     ],
+    \ },
+    \ 'typeprof': { 'disabled': 1 },
+\ }
+
+"カラースキーム
+set background=dark
+colorscheme iceberg
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+highlight LineNr ctermbg=none
+highlight Folded ctermbg=none
+highlight EndOfBuffer ctermbg=none
+
+"自動コメントアウトをオフに
+augroup auto_comment_off
+    autocmd!
+    autocmd BufEnter * setlocal formatoptions-=r
+    autocmd BufEnter * setlocal formatoptions-=o
+augroup END
+
+augroup dart
+    autocmd!
+    autocmd BufEnter *.dart setlocal tabstop=2
+    autocmd BufEnter *.dart setlocal shiftwidth=2
+    autocmd BufWritePre *.dart execute('LspCodeActionSync source.organizeImports') | execute('LspCodeActionSync source.fixAll') | LspDocumentFormatSync
+augroup END
+
+"lightline
+let g:lightline={
+    \ 'separator':{'left':"\ue0b0",'right':"\ue0b2"},
+    \ 'subseparator':{'left':"\ue0b1",'right':"\ue0b3"}
+    \ }
+
+"Markdown
+" augroup Markdown 
+"     autocmd!
+"     autocmd BufNewFile,BufRead *.{md} set filetype=markdown
+"     autocmd BufWritePre *.md execute("LspDocumentFormatSync --server=efm-langserver")
+" augroup END
+
+"Makefile
+augroup Makefile
+    autocmd!
+    autocmd FileType make setlocal noexpandtab
+augroup END
+
+augroup TypeScript
+    autocmd!
+    " autocmd BufWritePre *.ts execute("LspDocumentFormatSync --server=efm-langserver")
+augroup END
+
+augroup Scheme
+    autocmd!
+    autocmd FileType scheme setlocal noautoindent
+augroup END
+
+"sonictemplate
+let g:sonictemplate_vim_template_dir=[
+    \ '~/.vim/template'
+    \ ]
+
+"fzf-vim
+nnoremap gf :Files<cr>
+nnoremap gb :Buffers<cr>
+
+"vim-easymotion
+let g:EasyMotion_do_mapping = 0
+nmap s <Plug>(easymotion-s2)
+
+nnoremap <silent><ESC><ESC> :noh<cr>
+
+map , <Plug>(operator-replace)
+
+let g:clever_f_across_no_line = 1
+
+let g:UltiSnipsExpandTrigger="<c-e>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+let g:lsp_settings_filetype_ruby = ['solargraph', 'typeprof']
+let g:lsp_diagnostics_virtual_text_align = "right"
+let g:lsp_diagnostics_virtual_text_padding_left = 5
+let g:lsp_diagnostics_virtual_text_wrap = "truncate"
+let g:lsp_document_code_action_signs_enabled = 0
+
+nnoremap <silent><C-p> :Fern . -drawer<cr>
+
+set notitle
+
+set vb t_vb=
