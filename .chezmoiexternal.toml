@@ -7,6 +7,7 @@
 {{- if eq .chezmoi.os "linux" }}
 [".local/bin/sheldon"]
     type = "file"
+    executable = true
     {{- $sheldon_arch := ""}}
     {{- if eq .chezmoi.arch "amd64" }}
         {{- $sheldon_arch = "x86_64"}}
