@@ -38,6 +38,9 @@ apply = ["source"]
 github = "sindresorhus/pure"
 apply = ["source"]
 
+[plugins.pure-disable-git-pull]
+inline = "export PURE_GIT_PULL=0"
+
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"
 
