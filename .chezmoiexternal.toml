@@ -20,3 +20,4 @@
         {{- $mise_arch = .chezmoi.arch }}
     {{- end }}
     url = "https://mise.jdx.dev/mise-latest-{{ $mise_os }}-{{ $mise_arch }}"
+    refreshPeriod = "168h"
