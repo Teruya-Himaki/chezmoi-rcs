@@ -56,6 +56,12 @@ github = "rupa/z"
 [plugins.gpg-agent]
 local = "~/.config/sheldon/"
 
+[plugins.ls-after-cd]
+inline = "function cd(){builtin cd $@ && ls}"
+
+[plugins.activate-mise]
+local = "~/.config/sheldon/"
+
 # For example:
 #
 # [plugins.base16]
