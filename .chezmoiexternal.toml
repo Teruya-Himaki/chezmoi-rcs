@@ -13,7 +13,7 @@
     {{- else }}
         {{- $sheldon_arch = .chezmoi.arch }}
     {{- end }}
-    url = "https://github.com/rossmacarthur/sheldon/releases/download/0.7.4/sheldon-0.7.4-{{ $sheldon_arch }}-unknown-linux.tar.gz"
+    url = "https://github.com/rossmacarthur/sheldon/releases/download/0.7.4/sheldon-0.7.4-{{ $sheldon_arch }}-unknown-linux-musl.tar.gz"
 {{- end }}
 
 [".local/bin/mise"]
