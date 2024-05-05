@@ -3,6 +3,19 @@
     url = "https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
     refreshPeriod = "168h"
 
+# On darwin: see run_once_install_sheldon_darwin.sh.tmpl
+{{- if eq .chezmoi.os "linux" }}
+[".local/bin/sheldon"]
+    type = "file"
+    {{- $sheldon_arch := ""}}
+    {{- if eq .chezmoi.arch "amd64" }}
+        {{- $sheldon_arch = "x86_64"}}
+    {{- else }}
+        {{- $sheldon_arch = .chezmoi.arch }}
+    {{- end }}
+    url = "https://github.com/rossmacarthur/sheldon/releases/download/0.7.4/sheldon-0.7.4-{{ $sheldon_arch }}-unknown-linux.tar.gz"
+{{- end }}
+
 [".local/bin/mise"]
     type = "file"
     executable = true

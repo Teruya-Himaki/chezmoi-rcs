@@ -1,0 +1,5 @@
+#!/bin/zsh
+set -euxo pipefail
+{{- if eq .chezmoi.os "darwin" }}
+brew install sheldon
+{{- end }}
