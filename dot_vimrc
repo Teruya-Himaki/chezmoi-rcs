@@ -36,6 +36,7 @@ Plug 'lambdalisue/nerdfont.vim'
 Plug 'lambdalisue/fern.vim'
 Plug 'lambdalisue/fern-renderer-nerdfont.vim'
 Plug 'preservim/vim-markdown'
+Plug 'github/copilot.vim'
 if has('python3')
     Plug 'SirVer/ultisnips'
     Plug 'honza/vim-snippets'
