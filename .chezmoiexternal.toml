@@ -6,11 +6,14 @@
 # On darwin: see run_once_install_sheldon_darwin.sh.tmpl
 {{- if eq .chezmoi.os "linux" }}
 [".local/bin/sheldon"]
-    type = "file"
+    type = "archive-file"
+    path = "sheldon"
     executable = true
     {{- $sheldon_arch := ""}}
     {{- if eq .chezmoi.arch "amd64" }}
         {{- $sheldon_arch = "x86_64"}}
+    {{- else if eq .chezmoi.arch "arm64" }}
+        {{- $sheldon_arch = "aarch64"}}
     {{- else }}
         {{- $sheldon_arch = .chezmoi.arch }}
     {{- end }}
