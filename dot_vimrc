@@ -13,11 +13,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'easymotion/vim-easymotion'
-Plug 'prabirshrestha/vim-lsp'
-Plug 'mattn/vim-lsp-settings'
-Plug 'prabirshrestha/asyncomplete.vim'
-Plug 'prabirshrestha/asyncomplete-lsp.vim'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Krasjet/auto.pairs'
 Plug 'rhysd/clever-f.vim'
 Plug 'kana/vim-operator-user'
@@ -112,33 +108,23 @@ cnoremap <C-h> <BS>
 cnoremap <C-d> <Del>
 
 let mapleader="\<Space>"
-nnoremap <silent><F12> :LspDefinition<cr>
-nnoremap <silent><F2> :LspRename<cr>
+nnoremap <silent><F12> <Plug>(coc-definition)
+nnoremap <silent><F2> <Plug>(coc-rename)<cr>
 nnoremap <silent><leader> :WhichKey '<Space>'<cr>
-" nnoremap <silent><Leader>h :LspHover<cr>
-" nnoremap <silent><Leader>a :LspCodeAction<cr>
-" nnoremap <silent><Leader>d :LspDocumentDiagnostics<cr>
-" nnoremap <silent><Leader>r :LspReferences<cr>
+
+function! ShowDocumentation()
+    if CocAction('hasProvider', 'hover')
+        call CocAction('definitionHover')
+    endif
+endfunction
 
 let g:which_key_map = {
-    \ 'h': [':LspHover', 'hover-information'],
-    \ 'a': [':LspCodeAction', 'code-action'],
-    \ 'd': [':LspDocumentDiagnostics', 'diagnostics'],
-    \ 'r': [':LspReferences', 'references']
+    \ 'h': [':call ShowDocumentation()', 'hover-information'],
+    \ 'a': ['<Plug>(coc-codeaction)', 'code-action'],
+    \ 'd': [':CocDiagnostics', 'diagnostics'],
+    \ 'r': ['<Plug>(coc-references)', 'references']
     \ }
 call which_key#register('<Space>', "g:which_key_map")
-
-
-let g:lsp_settings = {
-    \ 'analysis-server-dart-snapshot': {
-    \     'cmd': [
-    \         '/Users/teruya/.asdf/shims/dart',
-    \         '/Users/teruya/.asdf/installs/flutter/3.7.3-stable/bin/cache/dart-sdk/bin/snapshots/analysis_server.dart.snapshot',
-    \         '--lsp'
-    \     ],
-    \ },
-    \ 'typeprof': { 'disabled': 1 },
-\ }
 
 "カラースキーム
 set background=dark
@@ -160,7 +146,7 @@ augroup dart
     autocmd!
     autocmd BufEnter *.dart setlocal tabstop=2
     autocmd BufEnter *.dart setlocal shiftwidth=2
-    autocmd BufWritePre *.dart execute('LspCodeActionSync source.organizeImports') | execute('LspCodeActionSync source.fixAll') | LspDocumentFormatSync
+    " autocmd BufWritePre *.dart execute('LspCodeActionSync source.organizeImports') | execute('LspCodeActionSync source.fixAll') | LspDocumentFormatSync
 augroup END
 
 "lightline
@@ -214,12 +200,6 @@ let g:clever_f_across_no_line = 1
 let g:UltiSnipsExpandTrigger="<c-e>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-let g:lsp_settings_filetype_ruby = ['solargraph', 'typeprof']
-let g:lsp_diagnostics_virtual_text_align = "right"
-let g:lsp_diagnostics_virtual_text_padding_left = 5
-let g:lsp_diagnostics_virtual_text_wrap = "truncate"
-let g:lsp_document_code_action_signs_enabled = 0
 
 nnoremap <silent><C-p> :Fern . -drawer<cr>
 
