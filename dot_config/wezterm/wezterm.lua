@@ -2,7 +2,7 @@ local wezterm = require 'wezterm';
 
 return {
     window_decorations = "RESIZE",
-    font = wezterm.font("Ricty Nerd Font"),
+    font = wezterm.font("HackGen Console NF"),
     color_scheme = "iceberg-dark",
     use_ime = true,
     window_background_opacity = 0.75,
