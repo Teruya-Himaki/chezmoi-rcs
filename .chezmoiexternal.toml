@@ -38,3 +38,9 @@
     {{- end }}
     url = "https://mise.jdx.dev/mise-latest-{{ $mise_os }}-{{ $mise_arch }}"
     refreshPeriod = "168h"
+
+[".local/bin/imgcat"]
+    type = "file"
+    executable = true
+    url = "https://iterm2.com/utilities/imgcat"
+    refreshPeriod = "168h"
