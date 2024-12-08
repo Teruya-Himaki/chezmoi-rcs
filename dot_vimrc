@@ -109,7 +109,7 @@ cnoremap <C-d> <Del>
 
 let mapleader="\<Space>"
 nnoremap <silent><F12> <Plug>(coc-definition)
-nnoremap <silent><F2> <Plug>(coc-rename)<cr>
+nnoremap <silent><F2> <Plug>(coc-rename)
 nnoremap <silent><leader> :WhichKey '<Space>'<cr>
 
 function! ShowDocumentation()
