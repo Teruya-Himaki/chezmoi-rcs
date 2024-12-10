@@ -27,6 +27,10 @@ defer = "{{ hooks?.pre | nl }}{% for file in files %}zsh-defer source \"{{ file 
 local = "~/bin/"
 apply = ["PATH"]
 
+[plugins.cargo]
+local = "~/.cargo/bin"
+apply = ["PATH"]
+
 [plugins.compinit]
 inline = "autoload -Uz compinit && zsh-defer compinit"
 
@@ -50,20 +54,20 @@ github = "zsh-users/zsh-autosuggestions"
 [plugins.zsh-syntax-highlighting]
 github = "zsh-users/zsh-syntax-highlighting"
 
-[plugins.asdf]
-github = "asdf-vm/asdf"
-
 [plugins.z]
 github = "rupa/z"
-
-[plugins.gpg-agent]
-local = "~/.config/sheldon/"
 
 [plugins.ls-after-cd]
 inline = "function cd(){builtin cd $@ && ls}"
 
-[plugins.activate-mise]
+[plugins.dot_async]
 local = "~/.config/sheldon/"
+use = ["{!sync,*}.zsh"]
+
+[plugins.dot_sync]
+local = "~/.config/sheldon/"
+use = ["sync.zsh"]
+apply = ["source"]
 
 # For example:
 #
