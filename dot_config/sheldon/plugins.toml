@@ -60,6 +60,9 @@ github = "rupa/z"
 [plugins.ls-after-cd]
 inline = "function cd(){builtin cd $@ && ls}"
 
+[plugins.export-editor-vim]
+inline = "export EDITOR=vim"
+
 [plugins.dot_async]
 local = "~/.config/sheldon/"
 use = ["{!sync,*}.zsh"]
