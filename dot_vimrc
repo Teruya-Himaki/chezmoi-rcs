@@ -116,7 +116,6 @@ function! ShowDocumentation()
     endif
 endfunction
 
-if(exists("*which_key#register"))
     let g:which_key_map = {
         \ 'h': [':call ShowDocumentation()', 'hover-information'],
         \ 'a': ['<Plug>(coc-codeaction)', 'code-action'],
@@ -124,7 +123,6 @@ if(exists("*which_key#register"))
         \ 'r': ['<Plug>(coc-references)', 'references']
         \ }
     call which_key#register('<Space>', "g:which_key_map")
-endif
 
 "カラースキーム
 set background=dark
