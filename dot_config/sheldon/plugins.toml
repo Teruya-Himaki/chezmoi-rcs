@@ -67,10 +67,11 @@ inline = "export EDITOR=vim"
 local = "~/.config/sheldon/"
 use = ["{!sync,*}.zsh"]
 
-[plugins.dot_sync]
-local = "~/.config/sheldon/"
-use = ["sync.zsh"]
-apply = ["source"]
+# syncを使いたくなったらアンコメントする
+# [plugins.dot_sync]
+# local = "~/.config/sheldon/"
+# use = ["sync.zsh"]
+# apply = ["source"]
 
 # For example:
 #
