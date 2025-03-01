@@ -63,6 +63,9 @@ inline = "function cd(){builtin cd $@ && ls}"
 [plugins.export-editor-vim]
 inline = "export EDITOR=vim"
 
+[plugins.bindkey-e]
+inline = "bindkey -e"
+
 [plugins.dot_async]
 local = "~/.config/sheldon/"
 use = ["{!sync,*}.zsh"]
