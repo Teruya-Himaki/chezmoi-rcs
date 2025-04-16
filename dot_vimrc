@@ -39,6 +39,8 @@ endif
 
 call plug#end()
 
+packadd! matchit
+
 let g:fern#renderer = "nerdfont"
 
 if has('python3')
