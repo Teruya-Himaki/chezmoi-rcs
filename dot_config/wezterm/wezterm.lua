@@ -2,6 +2,7 @@ local wezterm = require 'wezterm';
 
 return {
     window_decorations = "RESIZE",
+    audible_bell = "Disabled",
     font = wezterm.font("HackGen Console NF"),
     color_scheme = "iceberg-dark",
     use_ime = true,
